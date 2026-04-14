@@ -1,10 +1,9 @@
-
 pandas
-scikit-learn
 numpy
-xgboost
+scikit-learn
 imbalanced-learn
+matplotlib
+seaborn
 streamlit
 plotly
-seaborn
-matplotlib
+xgboost
