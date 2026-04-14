@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4da214b7-2d11-4f21-9e83-b9c9e2435fdb" name="Changes" comment="predict.py updated">
+    <list default="true" id="4da214b7-2d11-4f21-9e83-b9c9e2435fdb" name="Changes" comment="app updated">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/predict.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/predict.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notebooks/EDS.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/notebooks/EDS.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,7 +102,7 @@
       <option name="presentableId" value="Default" />
       <updated>1776139002150</updated>
       <workItem from="1776139003210" duration="333000" />
-      <workItem from="1776139426673" duration="5298000" />
+      <workItem from="1776139426673" duration="5953000" />
     </task>
     <task id="LOCAL-00001" summary="dataset and model training.">
       <option name="closed" value="true" />
@@ -127,7 +128,15 @@
       <option name="project" value="LOCAL" />
       <updated>1776143974035</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="app updated">
+      <option name="closed" value="true" />
+      <created>1776144918188</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1776144918188</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -137,7 +146,8 @@
     <MESSAGE value="dataset and model training." />
     <MESSAGE value="model pkl files" />
     <MESSAGE value="predict.py updated" />
-    <option name="LAST_COMMIT_MESSAGE" value="predict.py updated" />
+    <MESSAGE value="app updated" />
+    <option name="LAST_COMMIT_MESSAGE" value="app updated" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Churn_Prediction$preprocess.coverage" NAME="preprocess Coverage Results" MODIFIED="1776141016127" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />

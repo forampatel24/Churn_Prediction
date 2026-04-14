@@ -6,3 +6,5 @@ xgboost
 imbalanced-learn
 streamlit
 plotly
+seaborn
+matplotlib
