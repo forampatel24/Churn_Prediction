@@ -4,3 +4,5 @@ scikit-learn
 numpy
 xgboost
 imbalanced-learn
+streamlit
+plotly
