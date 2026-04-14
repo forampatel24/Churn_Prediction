@@ -1,34 +1,55 @@
-# Customer Churn Prediction — Telecom
+# 📡 Customer Churn Prediction System
 
-Predict whether a telecom customer will churn using demographic info, billing details, contract type, and service usage. Built with scikit-learn, XGBoost, and a Streamlit frontend.
+An end-to-end Machine Learning project that predicts whether a telecom customer will churn using behavioral, service, and billing data.
 
 ---
 
-## Project structure
+## 🚀 Project Overview
+
+Customer churn is a major problem in the telecom industry. This project builds a **complete ML pipeline + interactive Streamlit app** to:
+
+* Predict churn probability
+* Classify customers into risk levels (Low / Medium / High)
+* Provide actionable retention strategies
+
+---
+
+## 🧠 Problem Statement
+
+Predict whether a customer will:
+
+* `0 → Stay`
+* `1 → Churn`
+
+based on usage, billing, and service features.
+
+---
+
+## 📂 Project Structure
 
 ```
 customer-churn-prediction/
 │
 ├── data/
-│   └── telco.csv               ← Raw dataset (Kaggle)
+│   └── telco_clean.csv
 │
 ├── notebooks/
-│   └── EDA.ipynb               ← Exploratory data analysis
+│   └── EDA.ipynb
 │
 ├── src/
-│   ├── preprocess.py           ← Data cleaning & encoding
-│   ├── train.py                ← Model training & evaluation
-│   └── predict.py              ← Inference (single + batch)
+│   ├── preprocess.py
+│   ├── train.py
+│   ├── predict.py
 │
 ├── model/
-│   ├── churn_model.pkl         ← Trained Random Forest model
-│   ├── scaler.pkl              ← StandardScaler
-│   ├── imputer.pkl             ← SimpleImputer
-│   ├── threshold.pkl           ← Optimal decision threshold
-│   └── columns.pkl             ← Feature column order
+│   ├── churn_model.pkl
+│   ├── scaler.pkl
+│   ├── imputer.pkl
+│   ├── threshold.pkl
+│   ├── columns.pkl
 │
 ├── app/
-│   └── app.py                  ← Streamlit web app
+│   └── app.py
 │
 ├── requirements.txt
 └── README.md
@@ -36,98 +57,171 @@ customer-churn-prediction/
 
 ---
 
-## Setup
+## 🔍 Data Processing
 
-### 1. Clone and install dependencies
+The dataset is downloaded from Kaggle and cleaned using:
 
-```bash
-git clone <your-repo-url>
-cd customer-churn-prediction
-pip install -r requirements.txt
-```
-
-### 2. Download the dataset
-
-Download from Kaggle: https://www.kaggle.com/blastchar/telco-customer-churn  
-Place the file at `data/telco.csv`.
+* Removal of duplicates
+* Conversion of `TotalCharges` to numeric
+* Missing value handling using median
+* Encoding using `pd.get_dummies()`
 
 ---
 
-## Usage
+## ⚙️ Feature Engineering
 
-### Step 1 — Preprocess
+Additional features created:
 
-```bash
-python src/preprocess.py
+* `AvgMonthlyCharge` → spending behavior
+* `TenureBucket` → customer segmentation
+* `NumAddons` → number of services used
+
+---
+
+## 🤖 Model Training
+
+Multiple models were trained and compared:
+
+* Logistic Regression
+* Random Forest
+* Gradient Boosting
+* SVM (RBF Kernel)
+* XGBoost (if installed)
+
+### 🔥 Key Techniques Used
+
+* SMOTE (to handle class imbalance)
+* StandardScaler (feature scaling)
+* Median Imputation
+* Stratified Train-Test Split
+* Threshold Optimization (instead of fixed 0.5)
+
+---
+
+## 📊 Model Performance
+
+Example output during training:
+
+```
+Model                  Acc     AUC     F1    Rec   Thresh
+---------------------------------------------------------
+SVM (RBF)              ~0.74   ~0.83  ~0.70  ~0.79  ~0.40
 ```
 
-Cleans raw data, encodes categoricals, and saves `data/telco_clean.csv`.
+💡 Focus was on **F1-score and recall** for churn class.
 
-### Step 2 — Train
+---
+
+## 🔮 Prediction System
+
+Prediction pipeline:
+
+```
+Raw Input → Feature Engineering → Imputer → Scaler → Model → Probability → Threshold → Risk Level
+```
+
+### Output Example:
+
+```
+Prediction      : ⚠️ WILL CHURN
+Probability     : 56.19%
+Risk Level      : Medium
+```
+
+---
+
+## 🌐 Streamlit Web App
+
+The app provides:
+
+### 🔹 Single Customer Prediction
+
+* User-friendly input form
+* Probability gauge chart
+* Risk classification
+* Retention recommendations
+
+### 🔹 Batch Prediction
+
+* Upload CSV
+* Get predictions for all customers
+* Risk breakdown visualization
+* Download results
+
+---
+
+## ▶️ How to Run
+
+### 1. Clone Repository
+
+```bash
+git clone <your-repo-link>
+cd customer-churn-prediction
+```
+
+### 2. Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 3. Run Training (optional)
 
 ```bash
 python src/train.py
 ```
 
-Trains Logistic Regression, Random Forest, Gradient Boosting, SVM, and XGBoost.  
-Applies SMOTE to handle class imbalance, tunes the decision threshold per model, and saves the best model artifacts to `model/`.
-
-### Step 3 — Predict (optional CLI test)
-
-```bash
-python src/predict.py
-```
-
-Runs a quick single-customer prediction using a hardcoded sample.
-
-For batch scoring from a CSV:
-
-```python
-from src.predict import predict_batch
-results = predict_batch("data/new_customers.csv", output_path="data/predictions.csv")
-```
-
-### Step 4 — Run the Streamlit app
+### 4. Run Streamlit App
 
 ```bash
 streamlit run app/app.py
 ```
 
-Opens at `http://localhost:8501` with two modes:
-- **Single customer** — fill in a form and get an instant churn prediction with gauge chart and retention recommendations.
-- **Batch CSV upload** — upload a CSV, score all customers, view risk breakdown, and download results.
+---
+
+## 📈 Technologies Used
+
+* Python
+* Pandas, NumPy
+* Scikit-learn
+* Imbalanced-learn (SMOTE)
+* Streamlit
+* Plotly
+* Matplotlib, Seaborn
 
 ---
 
-## Model performance (best model: Random Forest)
+## 🧠 Key Insights (from EDA)
 
-| Metric | Score |
-|---|---|
-| Accuracy | 79% |
-| AUC-ROC | 0.841 |
-| Churn F1 | 0.636 |
-| Churn precision | 0.58 |
-| Churn recall | 0.71 |
-| Decision threshold | 0.53 |
-
-Class imbalance (~74% No / 26% Yes) handled with SMOTE on training data only.
+* Customers with **low tenure churn more**
+* Customers with **higher monthly charges churn more**
+* Customers with **fewer services are more likely to churn**
+* Dataset is **imbalanced (~26% churn)**
 
 ---
 
-## Key features used
+## 🎯 Future Improvements
 
-- `tenure` — months with the company
-- `MonthlyCharges` / `TotalCharges`
-- `Contract` — month-to-month contracts are the strongest churn signal
-- `InternetService` — fiber optic customers churn more
-- `TenureBucket` — engineered: short / mid / long-term customer
-- `AvgMonthlyCharge` — engineered: TotalCharges / (tenure + 1)
-- `NumAddons` — engineered: count of active add-on services
+* Deploy on cloud (Streamlit Cloud / AWS)
+* Add FastAPI backend
+* Use advanced models (LightGBM, XGBoost tuning)
+* Improve UI/UX
 
 ---
 
-## Dataset
+## 👤 Author
 
-**Telco Customer Churn** by IBM via Kaggle  
-Link: https://www.kaggle.com/blastchar/telco-customer-churn  
-7,043 customers · 21 features · Binary target: `Churn` (Yes / No)
+Foram Patel
+
+---
+
+## ⭐ Conclusion
+
+This project demonstrates:
+
+* End-to-end ML pipeline design
+* Feature engineering
+* Model optimization
+* Real-world deployment using Streamlit
+
+💥 A complete industry-style machine learning project.
