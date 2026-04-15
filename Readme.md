@@ -224,4 +224,4 @@ This project demonstrates:
 * Model optimization
 * Real-world deployment using Streamlit
 
-💥 A complete industry-style machine learning project.
+
